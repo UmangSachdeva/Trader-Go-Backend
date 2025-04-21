@@ -17,8 +17,7 @@ def send_code_to_user(email):
     # print(otp_code)
     user = User.objects.get(email=email)
     current_site = "tradergo.com"
-    email_body = f"Hi {user.first_name} thanks for signing up on {
-        current_site} please verify your email with the \n one time passcode {otp_code}"
+    email_body = f"Hi {user.first_name} thanks for signing up on {current_site} please verify your email with the \n one time passcode {otp_code}"
     from_email = settings.DEFAULT_FROM_EMAIL
 
     OneTimePassword.objects.create(user=user, code=otp_code)
