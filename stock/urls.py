@@ -9,5 +9,4 @@ urlpatterns = [
     path('ticker/img/', views.ticker_picture),
     path('ticker/details/', views.GetTickerDetails.as_view()),
     path('wishlist', views.WishlistStock.as_view()),
-    path('price', views.StockPrice.as_view())
 ]

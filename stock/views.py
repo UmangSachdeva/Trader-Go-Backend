@@ -121,21 +121,21 @@ def ticker_picture(req):
     # return HttpResponse(image_data, content_type='image/*')
 
 
-class StockPrice(GenericAPIView):
-    permission_classes = [IsAuthenticated]
+# class StockPrice(GenericAPIView):
+#     permission_classes = [IsAuthenticated]
 
-    def get(self, request, *args, **kwargs):
-        # Generator to yield server-sent events data
-        def event_stream():
-            while True:
-                # This example sends a simple message with a timestamp every 2 seconds.
-                message = f"data: The server time is {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
-                yield message
-                time.sleep(2)  # Adjust the frequency of messages here
+#     def get(self, request, *args, **kwargs):
+#         # Generator to yield server-sent events data
+#         def event_stream():
+#             while True:
+#                 # This example sends a simple message with a timestamp every 2 seconds.
+#                 message = f"data: The server time is {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+#                 yield message
+#                 time.sleep(2)  # Adjust the frequency of messages here
 
-        response = StreamingHttpResponse(
-            streaming_content="hello", content_type="text/event-stream")
-        response['Cache-Control'] = 'no-cache'
-        response['Connection'] = 'keep-alive'
-        response['Transfer-Encoding'] = 'chunked'
-        return response
+#         response = StreamingHttpResponse(
+#             streaming_content="hello", content_type="text/event-stream")
+#         response['Cache-Control'] = 'no-cache'
+#         response['Connection'] = 'keep-alive'
+#         response['Transfer-Encoding'] = 'chunked'
+#         return response
