@@ -129,8 +129,7 @@ class StockPrice(GenericAPIView):
         def event_stream():
             while True:
                 # This example sends a simple message with a timestamp every 2 seconds.
-                message = f"data: The server time is {
-                    time.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
+                message = f"data: The server time is {time.strftime('%Y-%m-%d %H:%M:%S')}\n\n"
                 yield message
                 time.sleep(2)  # Adjust the frequency of messages here
 
