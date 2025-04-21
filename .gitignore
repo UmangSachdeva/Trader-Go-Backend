@@ -1,0 +1,29 @@
+# Django specific
+*.log
+*.pot
+*.pyc
+__pycache__/
+db.sqlite3
+db.sqlite3-journal
+
+# Environment variables
+.env
+
+# Media
+/media
+
+# Migrations
+*/migrations/
+
+# Static files
+/staticfiles
+/static/
+
+# IDEs and editors
+.vscode/
+.idea/
+*.swp
+*~
+
+# Other
+.qodo
