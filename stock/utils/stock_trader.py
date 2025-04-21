@@ -22,7 +22,7 @@ def get_ticker_info(req):
 
     # print(query_string)
 
-    page = requests.get(f'https://www.google.com/finance/quote/{symbol}')
+    page = requests.get(f"https://www.google.com/finance/quote/{symbol}")
     soup = BeautifulSoup(page.content, 'html.parser')
 
     stock_symbols = soup.find('ul', class_='sbnBtf').find_all('li')
@@ -52,8 +52,8 @@ def get_trade_info(req):
         start = yesterday - timedelta(days=40)
     # start: today - relativedelta(years=1)
 
-    url = f'https://api.polygon.io/v2/aggs/ticker/{
-        symbol}/range/1/day/{start}/{end}?adjusted=true&sort=asc&apiKey={POLYGON_API_KEY}'
+    url = f"https://api.polygon.io/v2/aggs/ticker/{
+        symbol}/range/1/day/{start}/{end}?adjusted=true&sort=asc&apiKey={POLYGON_API_KEY}"
 
     res = requests.get(url)
     data = res.json()
@@ -73,7 +73,7 @@ def get_ticker_details(req):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:132.0) Gecko/20100101 Firefox/132.0'}
 
     page = requests.get(
-        f'https://finance.yahoo.com/quote/{symbol}', headers=headers)
+        f"https://finance.yahoo.com/quote/{symbol}", headers=headers)
 
     print(page)
     soup = BeautifulSoup(page.content, 'html.parser')
@@ -119,8 +119,8 @@ def get_ticker_picture(req):
     query_string = req.GET
     symbol = query_string.get("symbol")
 
-    url = f'https://api.polygon.io/v3/reference/tickers/{
-        symbol}?apiKey={POLYGON_API_KEY}'
+    url = f"https://api.polygon.io/v3/reference/tickers/{
+        symbol}?apiKey={POLYGON_API_KEY}"
 
     res = requests.get(url)
     data = res.json()
@@ -146,7 +146,7 @@ def get_stock_details(req):
     headers = {
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.102 Safari/537.36'}
     page = requests.get(
-        f'https://finance.yahoo.com/quote/{symbol}', headers=headers)
+        f"https://finance.yahoo.com/quote/{symbol}", headers=headers)
     soup = BeautifulSoup(page.content, 'html.parser')
 
     # # print(page.content)

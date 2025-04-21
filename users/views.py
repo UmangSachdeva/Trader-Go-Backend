@@ -35,7 +35,7 @@ class RegisterUserView(GenericAPIView):
             # send email function
             return Response({
                 'data': user,
-                'message': f'hi {user['first_name']} thank for signing up'
+                'message': f"hi {user['first_name']} thank for signing up"
             }, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
