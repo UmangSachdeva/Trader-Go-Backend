@@ -1,6 +1,9 @@
 from pathlib import Path
 import environ
 from datetime import timedelta
+import dj_database_url
+from decouple import config  # use decouple to fetch env vars
+import os
 
 env = environ.Env(
     DEBUG=(bool, False)
@@ -35,7 +38,7 @@ DEBUG = env('DEBUG')
 SECRET_KEY = env('SECRET_KEY')
 
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['https://trader-go-backend.onrender.com']
 
 AUTH_USER_MODEL = "users.User"
 
@@ -104,12 +107,19 @@ WSGI_APPLICATION = 'trader_go.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/5.0/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+if config('DATABASE_URL', default=None):
+    # Use PostgreSQL in production
+    DATABASES = {
+        'default': dj_database_url.config(conn_max_age=600)
     }
-}
+else:
+    # Use SQLite locally
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': BASE_DIR / 'db.sqlite3',
+        }
+    }
 
 
 # Password validation
